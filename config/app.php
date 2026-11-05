@@ -123,4 +123,7 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'seed_user_email' => env('SEED_USER_EMAIL', 'user@example.com'),
+    'seed_user_name' => env('SEED_USER_NAME', 'John Doe'),
+
 ];
