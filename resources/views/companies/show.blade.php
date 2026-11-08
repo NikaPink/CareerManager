@@ -1,4 +1,7 @@
 <x-layouts::app :title="__('Détails de l\'entreprise')">
+    @if( session('success'))
+        <p class="text-green-600"> {{ session('success') }} </p>
+    @endif
     <h1>nom : {{$company->name}}</h1>
 
     <ul>
@@ -18,6 +21,7 @@
 
         <li>créée le {{ $company->created_at->format('d/m/Y') }}</li>
     </ul>
+        <a href="{{route('companies.edit', ['company'=>$company])}}">Mettre à jour</a>
 
 
 </x-layouts::app>

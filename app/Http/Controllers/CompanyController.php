@@ -30,7 +30,7 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         $company = $request->user()->companies()->create($request->validated());
-        return to_route('companies.show', ['company' => $company]);
+        return to_route('companies.show', ['company' => $company])->with('success', 'Entreprise Créée');
     }
 
     /**
@@ -46,7 +46,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', ['company' => $company]);
     }
 
     /**
