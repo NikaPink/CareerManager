@@ -54,7 +54,8 @@ class CompanyController extends Controller
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+        $company->update($request->validated());
+        return to_route('companies.show', ['company' => $company])->with('success', 'Entreprise modifiée');
     }
 
     /**
