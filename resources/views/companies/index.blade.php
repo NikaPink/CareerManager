@@ -1,9 +1,12 @@
 <x-layouts::app :title="__('Liste des entreprises')">
-<h1>liste des entreprises :</h1>
-@foreach($companies as $company)
+    <h1>liste des entreprises :</h1>
     <ul>
-        <li>{{ $company->name }}</li>
-    </ul>
-@endforeach
+        @foreach($companies as $company)
 
+            <li>
+                <a href="{{ route('companies.show', $company->id) }}">{{ $company->name }}</a>
+            </li>
+
+        @endforeach
+    </ul>
 </x-layouts::app>
