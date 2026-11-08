@@ -34,5 +34,6 @@
         </ul>
         <button type="submit">ENVOYER</button>
     </form>
+    <a href="{{route('companies.index')}}">Annuler</a>
 
 </x-layouts::app>

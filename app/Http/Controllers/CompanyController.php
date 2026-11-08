@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use App\Models\Company;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         return view('companies.index', ['companies' => Company::all()]);
     }
@@ -19,7 +21,7 @@ class CompanyController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('companies.create');
     }
@@ -27,16 +29,17 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompanyRequest $request)
+    public function store(StoreCompanyRequest $request): RedirectResponse
     {
         $company = $request->user()->companies()->create($request->validated());
+
         return to_route('companies.show', ['company' => $company])->with('success', 'Entreprise Créée');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Company $company): View
     {
         return view('companies.show', ['company' => $company]);
     }
@@ -44,7 +47,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit(Company $company): View
     {
         return view('companies.edit', ['company' => $company]);
     }
@@ -52,17 +55,20 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(UpdateCompanyRequest $request, Company $company): RedirectResponse
     {
         $company->update($request->validated());
+
         return to_route('companies.show', ['company' => $company])->with('success', 'Entreprise modifiée');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Company $company): RedirectResponse
     {
-        //
+        $company->delete();
+
+        return to_route('companies.index')->with('success', 'Entreprise supprimée');
     }
 }

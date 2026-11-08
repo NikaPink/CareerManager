@@ -21,7 +21,14 @@
 
         <li>créée le {{ $company->created_at->format('d/m/Y') }}</li>
     </ul>
-        <a href="{{route('companies.edit', ['company'=>$company])}}">Mettre à jour</a>
+    <a href="{{route('companies.edit', ['company'=>$company])}}">Mettre à jour</a>
+    <form action="{{route('companies.destroy', ['company'=>$company])}}" method="post">
+        @csrf @method('DELETE')
+        <button type="submit" onclick="return confirm(' Êtes-vous sûr de vouloir supprimer cette entreprise ?')">
+            Supprimer
+        </button>
+    </form>
+    <a href="{{route('companies.index')}}">← retour à la liste</a>
 
 
 </x-layouts::app>
