@@ -29,7 +29,8 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+        $company = $request->user()->companies()->create($request->validated());
+        return to_route('companies.show', ['company' => $company]);
     }
 
     /**
