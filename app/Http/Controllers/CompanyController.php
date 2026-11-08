@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use App\Models\Company;
 
 class CompanyController extends Controller
 {
@@ -13,7 +13,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('companies.index' , ['companies'=>Company::all()]);
+        return view('companies.index', ['companies' => Company::all()]);
     }
 
     /**
@@ -37,7 +37,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return view('companies.show', ['company' => $company]);
     }
 
     /**
