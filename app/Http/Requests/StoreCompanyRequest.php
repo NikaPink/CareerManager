@@ -12,7 +12,7 @@ class StoreCompanyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,10 @@ class StoreCompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'max:100'],
+            'website_url' => ['nullable', 'url'],
+            'notes' => ['nullable', 'string', 'max:5000'],
+            'city' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
